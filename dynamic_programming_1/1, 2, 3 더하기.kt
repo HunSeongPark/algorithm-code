@@ -14,15 +14,29 @@ fun main() = with(Scanner(System.`in`)) {
 }
 
 fun cases(n: Int): Int {
-    return when {
-        n <= 2 -> {
-            n
-        }
-        n == 3 -> {
-            4
-        }
-        else -> {
-            cases(n-1) + cases(n-2) + cases(n-3)
+    val cache = Array(n+4) { 0 }
+    cache[1] = 1
+    cache[2] = 2
+    cache[3] = 4
+    if (n > 3) {
+        for (i in 4..n) {
+            cache[i] = cache[i - 1] + cache[i - 2] + cache[i - 3]
         }
     }
+    return cache[n]
 }
+
+// [Recursion]
+// fun cases(n: Int): Int {
+//     return when {
+//         n <= 2 -> {
+//             n
+//         }
+//         n == 3 -> {
+//             4
+//         }
+//         else -> {
+//             cases(n-1) + cases(n-2) + cases(n-3)
+//         }
+//     }
+// }
