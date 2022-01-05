@@ -3,4 +3,5 @@
 ## backtracking                    
 * [백준[1182] 부분수열의 합](https://hungseong.tistory.com/50)                        
 * [백준[6443] 애너그램](https://hungseong.tistory.com/51)                     
-* [백준[2580] 스도쿠](https://hungseong.tistory.com/52)                      
+* [백준[2580] 스도쿠](https://hungseong.tistory.com/52)                    
+* [백준[10974] 모든 순열](https://hungseong.tistory.com/53)                                 
