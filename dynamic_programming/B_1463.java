@@ -1,45 +1,28 @@
-import java.io.*;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class B_1463 {
 
-    static int N;
-    static Integer[] DP;
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
     public static void main(String[] args) throws IOException {
-        input();
-        System.out.println(dp(N));
-        clear();
-    }
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int[] dp = new int[N + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[1] = 0;
 
-    private static int dp(int n) {
-
-        if (DP[n] == null) {
-            if (n % 6 == 0) {
-                DP[n] = Math.min(dp(n / 3), Math.min(dp(n / 2), dp(n - 1))) + 1;
-            } else if (n % 3 == 0) {
-                DP[n] = Math.min(dp(n / 3), dp(n - 1)) + 1;
-            } else if (n % 2 == 0) {
-                DP[n] = Math.min(dp(n / 2), dp(n - 1)) + 1;
+        for (int i = 2; i <= N; i++) {
+            if (i % 6 == 0) {
+                dp[i] = Math.min(dp[i / 2], Math.min(dp[i / 3], dp[i - 1])) + 1;
+            } else if (i % 3 == 0){
+                dp[i] = Math.min(dp[i / 3],dp[i - 1]) + 1;
+            } else if (i % 2 == 0) {
+                dp[i] = Math.min(dp[i / 2],dp[i - 1]) + 1;
             } else {
-                DP[n] = dp(n - 1) + 1;
+                dp[i] = dp[i - 1] + 1;
             }
         }
-        return DP[n];
-    }
-
-    private static void input() throws IOException {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        DP = new Integer[N + 1];
-        DP[0] = 0;
-        DP[1] = 0;
-    }
-
-    private static void clear() throws IOException {
-        br.close();
-        bw.close();
+        System.out.println(dp[N]);
     }
 }
