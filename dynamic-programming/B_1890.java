@@ -16,10 +16,7 @@ public class B_1890 {
             }
         }
         long[][] DP = new long[N + 1][N + 1];
-        if (1 + A[1][1] <= N) {
-            DP[1 + A[1][1]][1] = 1;
-            DP[1][1 + A[1][1]] = 1;
-        }
+        DP[1][1] = 1;
         for (int i = 1; i <= N; i++) {
             for (int j = 1; j <= N; j++) {
                 int num = A[i][j];
